@@ -8,6 +8,7 @@ import { ErrorBanner } from "./components/ErrorBanner";
 import {
   createSupabaseClient,
   isSupabaseConfigured,
+  supabaseEnvHint,
 } from "./lib/supabaseClient";
 
 function dataHojeLabel(): string {
@@ -80,12 +81,7 @@ export default function App() {
 
   if (!configured) {
     return (
-      <ErrorBanner
-        message={
-          banner ||
-          "Configure VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY no arquivo .env (veja .env.example)."
-        }
-      />
+      <ErrorBanner message={banner || supabaseEnvHint()} />
     );
   }
 
